@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 # import django_heroku
 EMAIL_USE_TLS=True
 EMAIL_HOST='smtp.gmail.com'
-EMAIL_HOST_USER='shkhghosts@gmail.com'
-EMAIL_HOST_PASSWORD='qwerty234_'
+EMAIL_HOST_USER='ossrndcproject@gmail.com'
+EMAIL_HOST_PASSWORD='ossrndc@123'
 EMAIL_PORT=587
 
 import os
