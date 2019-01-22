@@ -39,7 +39,7 @@
   <form action="/add_service_form" method="POST" name='form'>
   	{% csrf_token %}
   	<!-- <label>Company:</label><br> -->
-    <input type="text" class="form-control" id = "id_company" name="company" value="{{ username }}" placeholder="Company" hidden
+    <input type="text" class="form-control" id = "id_company" name="company" value="{{ username }}" placeholder="Company" hidden>
      <label>Service:</label><br>
     <input type="text" class="form-control" id = "id_service" placeholder="Name of the service" name="service">
     <label>Category:</label><br>

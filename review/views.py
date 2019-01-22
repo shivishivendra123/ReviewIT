@@ -103,13 +103,14 @@ def add_service_form(request):
 	form = add_service(request.POST)
 	username = request.session['company']
 	if form.is_valid():
-		form.cleaned_data['company'] = username
 		company = form.cleaned_data['company']
 		service = form.cleaned_data['service']
 		category = form.cleaned_data['category']
 		description = form.cleaned_data['description']
-		form.save()
-
+		if(company==username):
+			form.save()
+		else:
+			return HttpResponse(form)
 		return redirect('/homepage')
 	
 def myservice(request,id):
@@ -151,9 +152,12 @@ def admin_login(request):
 def auth(request):
 	if request.method == 'GET':
 		if request.session.has_key('otp'):
-			form = auth_form()
-			otp = request.session['otp']
-			return render(request,'auth.html',{'form':form,'otp':otp})
+			if(request.session.has_key('admin_verify') and request.session['admin_verify'] == "1"):
+				return redirect('/admin_home')
+			else:
+				form = auth_form()
+				otp = request.session['otp']
+				return render(request,'auth.html',{'form':form,'otp':otp})
 		else:
 			return HttpResponse("Page does not exist")
 	else:
@@ -163,8 +167,16 @@ def auth(request):
 			otp1 = form.cleaned_data['otp_test']
 			otp1 = int(otp1)
 			if(otp1==otp):
-				return render(request,'auth_admin.html',{ 'otp1':otp1 })
+				request.session['admin_verify'] = "1"
+				return redirect('/admin_home')
 			else:
 				del request.session['otp']
 				del request.session['username']
 				return redirect('/admin_login')
+
+def admin_home(request):
+	query_set = Org.objects.all()
+	context = {
+		'all_company': query_set 
+	}
+	return render(request,'auth_admin.html', context)
