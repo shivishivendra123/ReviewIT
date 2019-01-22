@@ -175,8 +175,30 @@ def auth(request):
 				return redirect('/admin_login')
 
 def admin_home(request):
-	query_set = Org.objects.all()
+	pendingServiceRequest = Services.objects.filter(status="P")
 	context = {
-		'all_company': query_set 
+		'pending_services': pendingServiceRequest 
 	}
 	return render(request,'auth_admin.html', context)
+
+def accept_service(request):
+	company = request.GET['company']
+	service = request.GET['service']
+	category = request.GET['category']
+	update = Services.objects.filter(company=company,service=service,category=category).update(status='A')
+	pendingServiceRequest = Services.objects.filter(status="P")
+	context = {
+		'pending_services': pendingServiceRequest 
+	}
+	return render(request, 'acceptRejectDiv.html', context)
+
+def reject_service(request):
+	company = request.GET['company']
+	service = request.GET['service']
+	category = request.GET['category']
+	update = Services.objects.filter(company=company,service=service,category=category).update(status='R')
+	pendingServiceRequest = Services.objects.filter(status="P")
+	context = {
+		'pending_services': pendingServiceRequest 
+	}
+	return render(request, 'acceptRejectDiv.html', context)
