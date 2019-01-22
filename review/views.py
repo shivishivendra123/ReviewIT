@@ -168,7 +168,7 @@ def auth(request):
 			otp1 = int(otp1)
 			if(otp1==otp):
 				request.session['admin_verify'] = "1"
-				return redirect('/admin_home')
+				return redirect('/auth')
 			else:
 				del request.session['otp']
 				del request.session['username']
