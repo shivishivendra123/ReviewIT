@@ -12,7 +12,7 @@ from django.conf import settings
 # Create your views here.
 def main(request):
 
-	return render(request,'homepage/index.html')
+	return render(request,'index.html')
 	
 def create(request):
 
