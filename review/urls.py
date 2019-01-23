@@ -1,12 +1,9 @@
 from django.urls import path
 from .views import create,login,logout,homepage,add_service_form
-<<<<<<< HEAD
 from .views import myservice,admin_login,auth,main
-=======
 from .views import myservice,admin_login,auth,admin_home
 from .views import reject_service,accept_service
 
->>>>>>> 2fc3642dc09927db720904e8e4555a8715c77161
 urlpatterns = [
     path('',main),
     path('create',create),
