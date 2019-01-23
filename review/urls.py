@@ -1,8 +1,9 @@
 from django.urls import path
 from .views import create,login,logout,homepage,add_service_form
-from .views import myservice,admin_login,auth
+from .views import myservice,admin_login,auth,main
 urlpatterns = [
-    path('',create),
+    path('',main),
+    path('create',create),
     path('login',login),
     path('homepage',homepage),
     path('logout',logout),

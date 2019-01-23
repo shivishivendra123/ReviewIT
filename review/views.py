@@ -10,6 +10,10 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 # Create your views here.
+def main(request):
+
+	return render(request,'homepage/index.html')
+	
 def create(request):
 
 	if request.method == 'GET':
