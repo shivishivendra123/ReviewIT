@@ -124,7 +124,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-<<<<<<< HEAD
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
@@ -132,7 +131,6 @@ STATICFILES_DIRS = [
     # '/var/www/static/',
 ]
 # django_heroku.settings(locals())
-=======
+
 STATIC_URL = '/staticfiles/'
 django_heroku.settings(locals())
->>>>>>> 2fc3642dc09927db720904e8e4555a8715c77161
