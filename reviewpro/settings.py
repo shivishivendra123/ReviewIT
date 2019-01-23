@@ -125,11 +125,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/staticfiles/'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "staticfiles"),
-    # '/var/www/static/',
-]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "staticfiles"),
+#     # '/var/www/static/',
+# ]
 # django_heroku.settings(locals())
 
 django_heroku.settings(locals())
