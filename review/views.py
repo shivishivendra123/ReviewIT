@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,HttpResponse
 from .forms import login_form_org,login_form,add_service
 from .forms import admin_login_form,auth_form
-from .models import Org,Services,Admin
+from .models import Org,Services,Admin,Question,Category
 import random
 from django.http import Http404
 from django.contrib.auth import authenticate,login
@@ -206,3 +206,26 @@ def reject_service(request):
 		'pending_services': pendingServiceRequest 
 	}
 	return render(request, 'acceptRejectDiv.html', context)
+
+def service_category(request):
+	all_cattegories = Category.objects.all()
+	context = {
+		'categories': all_cattegories
+	}
+	return render(request, 'service_category_home.html', context)
+	# return HttpResponse('hey there crud for service category here !!!')
+
+def add_category(request):
+	category_name = request.POST['service_category']
+	c = Category(name = category_name)
+	c.save()
+	return redirect('/admin_service_category')
+
+def delete_category(request):
+	category_id = request.POST['service_category']
+	Category.objects.filter(id=category_id).delete()
+	return redirect('/admin_service_category')
+
+def service_question(request):
+	return render(request, 'service_question_home.html')
+	# return HttpResponse('hey there crud for service category questions here !!!')
